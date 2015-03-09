@@ -15,7 +15,7 @@ $emailValues = array(
     'password' => ''
 );
 
-$emailHtml = new EmailParser($emailValues, $emailTemplate, true);
+$emailHtml = new EmailTemplateParser($emailValues, $emailTemplate, true);
 echo $emailHtml->output();
 
 
@@ -48,5 +48,5 @@ $emailValues = array(
 );
 
 
-$emailHtml = new EmailParser($emailValues, $emailTemplateInline, false);
+$emailHtml = new EmailTemplateParser($emailValues, $emailTemplateInline, false);
 echo $emailHtml->output();

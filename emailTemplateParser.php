@@ -9,7 +9,7 @@
  * @version 1.0
  * @copyright 2015
  */
-class EmailParser {
+class EmailTemplateParser{
 
     protected $_openingTag = '{{';
     protected $_closingTag = '}}';

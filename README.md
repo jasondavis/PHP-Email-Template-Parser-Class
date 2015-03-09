@@ -48,7 +48,7 @@ I will show the usage for both versions below...
     // Passing in the Template file path and variable replacement
     // ARRAY as well as a TRUE flag to indicate that this Template is
     // being loaded from an External file and not an Inline string of HTML.
-    $emailHtml = new EmailParser($emailValues, $emailTemplate, true);
+    $emailHtml = new EmailTemplateParser($emailValues, $emailTemplate, true);
 
     // Print the Parsed Email Template to the screen.  Our Variable
     // placeholders in the template are now parsed with real values!
@@ -94,7 +94,7 @@ I will show the usage for both versions below...
     // ARRAY as well as a FALSE flag to indicate that this Template is
     // being loaded from a PHP Variable instead of an External file.
     // Please note that the FALSE flag is set by default and is not required!
-    $emailHtml = new EmailParser($emailValues, $emailTemplateInline, false);
+    $emailHtml = new EmailTemplateParser($emailValues, $emailTemplateInline, false);
 
     // Print the Parsed Email Template to the screen.  Our Variable
     // placeholders in the template are now parsed with real values!
