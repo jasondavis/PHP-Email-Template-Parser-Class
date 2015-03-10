@@ -9,15 +9,12 @@ require('emailTemplateParser.php');
  */
 $emailTemplate =  'email-template.tpl';
 
-$emailValues = array(
-    'username' => 'My username value here',
-    'password' => ''
-);
+$emailHtml = new EmailTemplateParser($emailTemplate);
 
-$emailHtml = new EmailTemplateParser($emailValues, $emailTemplate, true);
+$emailHtml->setVar('username', 'JasonDavis');
+$emailHtml->setVar('password', 'hfgjhfghsh');
+
 echo $emailHtml->output();
-
-
 
 
 //////////////////////////////////////////////////////////////////
@@ -43,9 +40,29 @@ HTML;
 
 $emailValues = array(
     'username' => 'My username value here',
-    'password' => ''
+    'password' => 'my pass'
 );
 
+$emailHtml = new EmailTemplateParser($emailTemplateInline);
 
-$emailHtml = new EmailTemplateParser($emailValues, $emailTemplateInline, false);
+$emailHtml->setVars($emailValues);
+
+echo $emailHtml->output();
+
+//////////////////////////////////////////////////////////////////
+
+/**
+ * Demo usage of Email Template Parser Class
+ * @param array $emailValues PHP Array where the KEY is the Variable name in the template and the VALUE is the replacement value.
+ * @param string $emailTemplate File path to a Email Template file p-assed into constructor.
+ * @return string HTML with any matching variables {{varName}} replaced with there values.
+ */
+
+$emailHtml = new EmailTemplateParser('email-template.tpl');
+
+$emailHtml->setVars(array(
+    'username' => 'My username value here',
+    'password' => 'ghjghghkhjk'
+));
+
 echo $emailHtml->output();

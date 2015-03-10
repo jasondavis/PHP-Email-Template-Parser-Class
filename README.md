@@ -11,6 +11,15 @@ The file `demo.php` is commented and pretty self explanatory on how to use the P
 
 1. Inline Template saved and stored as a String in a PHP variable.
 
+**There are 2 methods for setting Template Variables.  1 by 1 or passing in an Array**
+
+1. Calling `setVar($variable_key, $variable_value)` where `$variable_key` = `{{VAR_NAME}}` in your Template.
+
+
+1. Calling `setVars($variable_array)` and passing in an array of key=template variable name and value=the value to replace in the final HTML output.
+
+
+
 
 I will show the usage for both versions below...
 
@@ -40,15 +49,16 @@ I will show the usage for both versions below...
     // Assign our replacement VALUES to a matching KEY where the KEY
     // is the Variable Placeholder name used in the Template file!
     $emailValues = array(
-    'username' => 'My username value here',
-    'password' => 'My password'
+      'username' => 'My username value here',
+      'password' => 'My password'
     );
 
     // Instantiate our Email Template Parser Class
-    // Passing in the Template file path and variable replacement
-    // ARRAY as well as a TRUE flag to indicate that this Template is
-    // being loaded from an External file and not an Inline string of HTML.
-    $emailHtml = new EmailTemplateParser($emailValues, $emailTemplate, true);
+    // Passing in the Template file path
+    $emailHtml = new EmailTemplateParser($emailTemplate);
+
+    // Pass in an ARRAY of Variables to replace in the template file.
+    $emailHtml->setVars($emailValues);
 
     // Print the Parsed Email Template to the screen.  Our Variable
     // placeholders in the template are now parsed with real values!
@@ -82,19 +92,13 @@ I will show the usage for both versions below...
     </html>
     HTML;
 
-    // Assign our replacement VALUES to a matching KEY where the KEY
-    // is the Variable Placeholder name used in the Template string!
-    $emailValues = array(
-    'username' => 'My username value here',
-    'password' => 'My password'
-    );
-
     // Instantiate our Email Template Parser Class
-    // Passing in the Template file path and variable replacement
-    // ARRAY as well as a FALSE flag to indicate that this Template is
-    // being loaded from a PHP Variable instead of an External file.
-    // Please note that the FALSE flag is set by default and is not required!
-    $emailHtml = new EmailTemplateParser($emailValues, $emailTemplateInline, false);
+    // Passing in the Template variable
+    $emailHtml = new EmailTemplateParser($emailTemplateInline);
+
+    // Assign our replacement VALUES 1 by 1
+    $emailHtml->setVar('username', 'JasonDavis');
+    $emailHtml->setVar('password', 'hfgjhfghsh');
 
     // Print the Parsed Email Template to the screen.  Our Variable
     // placeholders in the template are now parsed with real values!
@@ -106,7 +110,7 @@ I will show the usage for both versions below...
 
 ## Other Info ##
 
-That pretty much sums up the current usage until I or you add to the current functionality and features.
+That pretty much sums up the current usage and functionality/features.
 
 Please feel free to send **pull request** or submit **issues** if they arise.  This was a quick and dirty little project thrown together to fix a need on another project in a night!
 
